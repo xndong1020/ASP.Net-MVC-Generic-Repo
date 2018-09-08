@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MVCTutorial.Web.Models.Department>
+
+@{
+    ViewBag.Title = "Company";
+}
+
+<h2>Company</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th>
+            Employees
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentHead)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+                <table class="table table-striped">
+                    @{
+                        foreach (var employee in item.Employees)
+                        {
+                            <tr>
+                                <td>@employee.DepartmentId</td>
+                                <td>@employee.Name</td>
+                                <td>@employee.Gender</td>
+                                <td>@employee.Salary</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentHead)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<string>
+@{
+    ViewBag.Title = "MyList";
+}
+
+<h2>MyList</h2>
+@{
+    @*@Model.Count()*@
+    //通过TempData来传递数据, 这种情况无需进行数据转换
+    <h1>@TempData["className"]</h1>
+
+    <hr />
+
+    foreach (var item in Model)
+    {
+        <h1>@item</h1>
+    }
+    <hr />
+
+    //通过ViewData来传递数据
+    foreach (var item in ViewData["subjects"] as IEnumerable<string>)
+    {
+        <h2>@item</h2>
+    }
+
+    <hr />
+
+    //通过ViewBag来传递数据, 这种情况无需进行数据转换
+    foreach (var item in ViewBag.Titles)
+    {
+        <h2>@item</h2>
+    }
+}
+
